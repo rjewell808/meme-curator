@@ -45776,7 +45776,8 @@ function (_React$Component) {
         className: "card-title"
       }, "Now this is definitley me \uD83D\uDE02"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "card-img",
-        src: "/meme-images/sample1.jpg"
+        id: "meme-img",
+        src: "/meme-images/sample2.jpg"
       })))));
     }
   }]);
