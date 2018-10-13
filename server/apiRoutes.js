@@ -18,7 +18,7 @@ const memeWeights = {
     "programmerhumor":      50,
     "i_irl":                50,
     "bikinibottomtwitter":  50,
-    "boottoobig":             50
+    "boottoobig":           50
 }
 
 router.get('/addFavorite', function(req, res) {
@@ -30,9 +30,14 @@ router.get('/getFavorites', function(req, res) {
 });
 
 router.get('/getAllMemes', function(req, res) {
+
     getAllMemes().then(function(data) {
         let result = [];
-        result.concat(...data);
+        data.forEach(function(element) {
+            element.forEach(function(inner) {
+                result.push(inner);
+            })
+        })
         res.json({
             result: result
         });
