@@ -13,6 +13,7 @@ body {
 
 .nav .nav-item a, .navbar-brand {
 	color: white;
+	height: 100%;
 }
 
 .card {
