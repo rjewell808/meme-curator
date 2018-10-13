@@ -13,5 +13,5 @@ app.listen(port, function() {
 });
 
 
-let apiRoutes = require('./apiRoutes');
-app.use('/api', apiRoutes);
+//let apiRoutes = require('./apiRoutes');
+//app.use('/api', apiRoutes);
