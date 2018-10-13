@@ -1,11 +1,11 @@
 const Pool = require('pg').Pool;
 
 var config = {
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    host: process.env.PGHOST,
-    port: process.env.PGPORT,
-    database: process.env.PGDATABASE,
+    user: "memers",
+    password: "urmomgay",
+    host: "memers-hackumass.cqgrlz65ktas.us-east-1.rds.amazonaws.com",
+    port: 5432,
+    database: "memecurator",
     ssl: true
 }
 
