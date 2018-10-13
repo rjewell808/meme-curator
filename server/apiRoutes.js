@@ -29,8 +29,11 @@ router.get('/getFavorites', function(req, res) {
 
 });
 
-router.get('/getAllMemes', function(req, res) {
+router.post('/updateMemes', function(req, res) {
+    console.log(req.body);
+})
 
+router.get('/getAllMemes', function(req, res) {
     getAllMemes().then(function(data) {
         let result = [];
         data.forEach(function(element) {
@@ -39,7 +42,8 @@ router.get('/getAllMemes', function(req, res) {
             })
         })
         res.json({
-            result: result
+            result: result,
+            memeWeights: memeWeights
         });
     });
 });
@@ -77,7 +81,7 @@ function getMemeFromSubreddit(subreddit) {
                 let j = 0;
                 while (j < children.length && memes.length < 5) {
                     if (children[j].data.post_hint === "image") {
-                        memes.push({imageUrl: children[j].data.url, subreddit: subreddit});
+                        memes.push({imageUrl: children[j].data.url, subreddit: subreddit, title: children[j].data.title});
                     }
                     j++;
                 }
@@ -96,26 +100,28 @@ function getSum() {
     return sum;
 }
 
-router.get('/getMemeOfType/:memeType', function(req, res) {
-
-});
-
-function insertUser() {
-    let queryString = `INSERT INTO users (0, "urmom")`;
+function createTable() {
+    console.log("Creating table");
+    let queryString = `CREATE TABLE IF NOT EXISTS favoritememes (id serial PRIMARY KEY, image_url varchar(255), date_favorited TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`
     db.query(queryString, function(err, result) {
-        if (err) console.log("error:", err);
-        console.log(result);
-        if (!err) insertFavorite();
+        console.log("Created table");
+        if (err) console.log("error", err)
+        console.log(result)
+        insertFavorite();
     });
 }
 
 function insertFavorite() {
-    let queryString = `INSERT INTO favoritememes VALUES ("sample1.jpg", ${new Date().toString()}, 0)`;
+    console.log("Inserting favorite");
+    let queryString = `INSERT INTO favoritememes(image_url) VALUES ('sample1.jpg')`;
     db.query(queryString, function(err, result) {
         if (err) console.log("error:", err);
+        console.log("inserted")
         console.log(result);
     });
 }
+
+createTable();
 
 
 
