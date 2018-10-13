@@ -19,7 +19,7 @@ class MemeCardComponent extends React.Component {
                     <div className="card mx-auto mt-4">
 					  <div className="card-body">
 					  	<h5 className="card-title">Now this is definitley me 😂</h5>
-					  	<img className="card-img" src="/meme-images/sample1.jpg"></img>
+					  	<img className="card-img" id="meme-img" src="/meme-images/sample2.jpg"></img>
 					  </div>
 					</div>
                 }
