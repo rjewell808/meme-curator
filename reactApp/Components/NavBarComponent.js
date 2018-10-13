@@ -11,7 +11,10 @@ class NavBarComponent extends React.Component {
                 <li className="navbar-brand">
                     MemeMachine
                 </li>
-        		<li className="nav-item ml-auto">
+                <li className="nav-item ml-auto">
+                    <a className="nav-link" href="#">Favorites</a>
+                </li>
+        		<li className="nav-item">
         			<a className="nav-link" href="#">Sign In</a>
         		</li>
         		<li className="nav-item">

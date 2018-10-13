@@ -1,6 +1,7 @@
 import React from 'react';
 import HelloWorldComponent from './HelloWorldComponent'
 import NavBarComponent from './NavBarComponent'
+import MemeCardComponent from './MemeCardComponent'
 
 class HomePageComponent extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class HomePageComponent extends React.Component {
     render() {
         return <div>
             <NavBarComponent />
+            <MemeCardComponent />
         </div>
     }
 }

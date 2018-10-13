@@ -32,7 +32,7 @@
     "rc-progress": "^2.2.6",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-swing": "^1.0.2",
+    "react-swing": "^1.0.0",
     "react-swipeable-cards": "^1.0.6",
     "serve-favicon": "^2.5.0",
     "webpack": "^4.20.2"
