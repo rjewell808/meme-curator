@@ -1,0 +1,45 @@
+{
+  "name": "meme-curator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode=development --watch",
+    "build": "webpack --mode=production",
+    "start": "node .server.js",
+    "start-dev": "nodemon .server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjewell808/meme-curator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjewell808/meme-curator/issues"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.1",
+    "rc-progress": "^2.2.6",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-swing": "^1.0.2",
+    "react-swipeable-cards": "^1.0.6",
+    "serve-favicon": "^2.5.0",
+    "webpack": "^4.20.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "nodemon": "^1.18.4",
+    "webpack-cli": "^3.1.2"
+  },
+  "homepage": "https://github.com/rjewell808/meme-curator#readme"
+}
