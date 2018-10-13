@@ -12,6 +12,5 @@ app.listen(port, function() {
 	console.log("running on port", port);
 });
 
-
-//let apiRoutes = require('./apiRoutes');
-//app.use('/api', apiRoutes);
+let apiRoutes = require('./apiRoutes');
+app.use('/api', apiRoutes);

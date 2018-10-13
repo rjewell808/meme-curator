@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const db = require('./database');
+const request = require('request');
 
 router.get('/addFavorite', function(req, res) {
 
@@ -10,8 +11,21 @@ router.get('/getFavorites', function(req, res) {
 });
 
 router.get('/getAllMemes', function(req, res) {
-
+    getAllMemes()
+    .then()
 });
+
+function getAllMemes() {
+    const subreddits = ["memes"];
+    for (var i = 0; i < subreddits.length; i++) {
+        const currentsubreddit = subreddits[i];
+        request(`http://www.reddit.com/r/${currentsubreddit}/.json`, function(error, response, body) {
+            console.log(response);
+            console.log("ZZZZZZZZZZZZZZZZ");
+            console.log(body);
+        });
+    }
+}
 
 router.get('/getMemeOfType/:memeType', function(req, res) {
 
@@ -34,7 +48,7 @@ function insertFavorite() {
     });
 }
 
-insertUser();
+getAllMemes();
 
 
 
