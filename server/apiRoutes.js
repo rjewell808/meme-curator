@@ -21,7 +21,7 @@ const memeWeights = {
     "boottoobig":           50
 }
 
-router.get('/addFavorite', function(req, res) {
+router.post('/addFavorite', function(req, res) {
     console.log(req.body);
 });
 
@@ -52,7 +52,7 @@ router.get('/getAllMemes', function(req, res) {
             })
         })
         res.json({
-            result: result,
+            result: shuffle(result),
             memeWeights: memeWeights
         });
     });
@@ -108,6 +108,17 @@ function getSum() {
         sum += memeWeights[key];
     }
     return sum;
+}
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }
 
 module.exports = router;
