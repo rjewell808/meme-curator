@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const db = require('./database');
+const Meme = require('./favoritememe');
 const request = require('request');
 
 const memeWeights = {
@@ -22,11 +22,21 @@ const memeWeights = {
 }
 
 router.get('/addFavorite', function(req, res) {
-
+    console.log(req.body);
 });
 
 router.get('/getFavorites', function(req, res) {
-
+    Meme.find({}, function(err, res) {
+        if (err) {
+            res.status(500).json({
+                "message": "There was an error" + err
+            });
+        } else {
+            res.json({
+                result: res
+            });
+        }
+    });
 });
 
 router.post('/updateMemes', function(req, res) {
@@ -99,30 +109,5 @@ function getSum() {
     }
     return sum;
 }
-
-function createTable() {
-    console.log("Creating table");
-    let queryString = `CREATE TABLE IF NOT EXISTS favoritememes (id serial PRIMARY KEY, image_url varchar(255), date_favorited TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`
-    db.query(queryString, function(err, result) {
-        console.log("Created table");
-        if (err) console.log("error", err)
-        console.log(result)
-        insertFavorite();
-    });
-}
-
-function insertFavorite() {
-    console.log("Inserting favorite");
-    let queryString = `INSERT INTO favoritememes(image_url) VALUES ('sample1.jpg')`;
-    db.query(queryString, function(err, result) {
-        if (err) console.log("error:", err);
-        console.log("inserted")
-        console.log(result);
-    });
-}
-
-createTable();
-
-
 
 module.exports = router;
