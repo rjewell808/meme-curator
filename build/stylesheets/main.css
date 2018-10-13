@@ -1,0 +1,16 @@
+body {
+	background-color: #263238;
+}
+
+.nav {
+	background-color: #37474F;
+	height: 44px;
+}
+
+.nav .nav-item:hover {
+	background-color: #546E7A;
+}
+
+.nav .nav-item a, .navbar-brand {
+	color: white;
+}
