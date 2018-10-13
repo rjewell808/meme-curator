@@ -47456,9 +47456,12 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MemeCardComponent).call(this, props));
     _this.state = {
-      currentMemes: []
+      currentMemes: [{
+        imageUrl: "./images/sample1.jpg",
+        title: "NA",
+        subreddit: "Papa pls"
+      }]
     };
-    console.log(_this.state);
     return _this;
   }
 
@@ -47466,8 +47469,8 @@ function (_React$Component) {
     key: "swiped",
     value: function swiped(e) {
       var newCurrentMemes = this.state.currentMemes;
-      newCurrentMemes.shift();
-      console.log(e);
+      newCurrentMemes.pop();
+      console.log(this.state.currentMemes.length);
       this.setState({
         currentMemes: newCurrentMemes
       });
@@ -47476,8 +47479,15 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/getAllMemes').then(function (data) {
+        var newCurrentMemes = [];
+
+        for (var i = 0; i < data.data.result.length; i++) {
+          newCurrentMemes.push(data.data.result[i]);
+          newCurrentMemes.push(data.data.result[i]);
+        }
+
         this.setState({
-          currentMemes: data.data.result
+          currentMemes: newCurrentMemes
         });
       }.bind(this)).catch(function (error) {
         console.log(error);
@@ -47492,8 +47502,10 @@ function (_React$Component) {
         backgroundImage: "url(/meme-images/sample2.jpg)",
         backgroundSize: "cover"
       };
-      var key = 0;
-      var imageToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].imageUrl : './sample1.jpg';
+      var key = -1; // let imageToRender = this.state.currentMemes.length > 0 ? [this.state.currentMemes[0].imageUrl] : './sample1.jpg';
+      // let textToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].title : 'NA';
+      // let subToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].subreddit: 'David Barrington is Amazing';
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_swing__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "stack",
         tagName: "div",
@@ -47503,24 +47515,39 @@ function (_React$Component) {
           });
         },
         ref: "stack",
-        throwoutend: function throwoutend(e) {
+        throwout: function throwout(e) {
           return _this2.swiped(e);
         }
-      }, //let meme = this.state.currentMemes[0];
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card mx-auto mt-4"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "card-title"
-      }, "Now this is definitley me \uD83D\uDE02"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-img",
-        style: {
-          backgroundImage: "url(".concat(imageToRender, ")")
+      }, this.state.currentMemes.map(function (element) {
+        key++;
+        var cardClass = "d-none";
+
+        if (key == _this2.state.currentMemes.length - 1) {
+          cardClass = "card mx-auto mt-4";
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "".concat(imageToRender)
-      }))))));
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: key,
+          className: cardClass,
+          id: key,
+          ref: key,
+          throwout: function throwout(e) {
+            return console.log('card throwout', e);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "card-title"
+        }, element.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-img",
+          style: {
+            backgroundImage: "url(".concat(element.imageUrl, ")")
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "".concat(element.imageUrl)
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit)));
+      }) //let meme = this.state.currentMemes[0];
+      ));
     }
   }]);
 

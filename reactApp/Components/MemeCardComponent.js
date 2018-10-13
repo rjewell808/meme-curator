@@ -3,18 +3,22 @@ import Swing from 'react-swing';
 import axios from 'axios';
 
 class MemeCardComponent extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
-        	currentMemes: []
+        	currentMemes: [{
+        		imageUrl: "./images/sample1.jpg",
+        		title: "NA",
+        		subreddit: "Papa pls"
+        	}]
         }
-        console.log(this.state)
     }
 
     swiped(e) {
     	let newCurrentMemes = this.state.currentMemes
-    	newCurrentMemes.shift()
-    	console.log(e)
+    	newCurrentMemes.pop()
+    	console.log(this.state.currentMemes.length)
     	this.setState({
     		currentMemes: newCurrentMemes
     	})
@@ -23,8 +27,13 @@ class MemeCardComponent extends React.Component {
     componentDidMount() {
     	axios.get('/api/getAllMemes')
     	.then(function(data) {
+    		let newCurrentMemes = [];
+    		for (var i = 0; i < data.data.result.length; i++) {
+    			newCurrentMemes.push(data.data.result[i]);
+    			newCurrentMemes.push(data.data.result[i]);
+    		}
     		this.setState({
-    			currentMemes: data.data.result
+    			currentMemes: newCurrentMemes
     		})
     	}.bind(this))
     	.catch(function(error) {
@@ -40,27 +49,43 @@ class MemeCardComponent extends React.Component {
 	    	backgroundImage: `url(/meme-images/sample2.jpg)`,
 	    	backgroundSize: "cover"
 	    };
-	    let key = 0;
+	    let key = -1;
 
-	    let imageToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].imageUrl : './sample1.jpg';
+	    // let imageToRender = this.state.currentMemes.length > 0 ? [this.state.currentMemes[0].imageUrl] : './sample1.jpg';
+	    // let textToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].title : 'NA';
+	    // let subToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].subreddit: 'David Barrington is Amazing';
+
         return ( <div>
         	<Swing
                 className="stack"
                 tagName="div"
                 setStack={stack => this.setState({ stack: stack })}
                 ref="stack"
-                throwoutend={e => this.swiped(e)}
+                throwout={e => this.swiped(e)}
                 >
                 {	
+                	this.state.currentMemes.map((element) => {
+                		key++;
+                		var cardClass = "d-none"
+
+                		if(key == this.state.currentMemes.length - 1){
+                			cardClass = "card mx-auto mt-4";
+                		}
+
+                		return (
+		                	<div key={key} className={ cardClass } id={key} ref={key} throwout={e => console.log('card throwout', e)}>
+							  <div className="card-body">
+							  	<h5 className="card-title">{element.title}</h5>
+							  	<div className="card-img" style={{backgroundImage: `url(${element.imageUrl})`}}>
+							  		<img src={`${element.imageUrl}`}></img>
+							  	</div>
+							  	<div>From: {element.subreddit}</div>
+							  </div>
+							</div>  
+						)
+                	})
 	        		//let meme = this.state.currentMemes[0];
-                	<div className="card mx-auto mt-4">
-					  <div className="card-body">
-					  	<h5 className="card-title">Now this is definitley me 😂</h5>
-					  	<div className="card-img" style={{backgroundImage: `url(${imageToRender})`}}>
-					  		<img src={`${imageToRender}`}></img>
-					  	</div>
-					  </div>
-					</div>         
+       
                 }
                 </Swing>
         </div> );
