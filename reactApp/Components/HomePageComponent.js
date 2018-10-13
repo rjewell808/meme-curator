@@ -1,5 +1,6 @@
 import React from 'react';
 import HelloWorldComponent from './HelloWorldComponent'
+import NavBarComponent from './NavBarComponent'
 
 class HomePageComponent extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class HomePageComponent extends React.Component {
 
     render() {
         return <div>
-            <HelloWorldComponent text={this.generateText()}  />
+            <NavBarComponent />
         </div>
     }
 }
