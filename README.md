@@ -2,6 +2,10 @@
 
 A HackUMassVI app.
 
+If cloning for the first time, navigate to the project directory via terminal and type: 
+
+`npm install`  <-- This will download all the dependencies
+
 To run, open up a terminal and type:
 
 `npm run webpack`
