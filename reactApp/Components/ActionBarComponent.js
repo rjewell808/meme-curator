@@ -19,8 +19,8 @@ class ActionBarComponent extends React.Component {
     }
 
     render() {
-        return <div className="d-inline">
-        	<button type="button" className="btn btn-outline-success mx-auto d-block mb-2" onClick={() => { this.addFavorite() }}>♥</button>
+        return <div className="d-inline ml-auto">
+        	<button type="button" className="btn btn-outline-success d-block my-2" onClick={() => { this.addFavorite() }}>♥</button>
         </div>
     }
 }

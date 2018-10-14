@@ -54,41 +54,54 @@ class MemeCardComponent extends React.Component {
 	    // let textToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].title : 'NA';
 	    // let subToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].subreddit: 'David Barrington is Amazing';
 
-        return ( <div>
-        	<Swing
-                className="stack"
-                tagName="div"
-                setStack={stack => this.setState({ stack: stack })}
-                ref="stack"
-                throwout={e => this.swiped(e)}
-                >
-                {	
-                	this.state.currentMemes.map((element) => {
-                		key++;
-                		var cardClass = "d-none"
+        return ( 
 
-                		if(key == this.state.currentMemes.length - 1){
-                			cardClass = "card mx-auto";
-                		}
+        	<div className="row mx-0 mt-4">
+                <div className="col">
+                </div>
+                    
+                <div className="col">
+                    <Swing
+	                className="stack"
+	                tagName="div"
+	                setStack={stack => this.setState({ stack: stack })}
+	                ref="stack"
+	                throwout={e => this.swiped(e)}
+	                >
+	                {	
+	                	this.state.currentMemes.map((element) => {
+	                		key++;
+	                		var cardClass = "d-none"
 
-                		return (
-		                	<div key={key} className={ cardClass } id={key} ref={key} throwout={e => console.log('card throwout', e)}>
-							  <div className="card-body">
-							  	<h5 className="card-title">{element.title}</h5>
-							  	<ActionBarComponent imageURL={element.imageUrl} />
-							  	<div className="card-img" style={{backgroundImage: `url(${element.imageUrl})`}}>
-							  		<img src={`${element.imageUrl}`}></img>
-							  	</div>
-							  	<div>From: {element.subreddit}</div>
-							  </div>
-							</div>  
-						)
-                	})
-	        		//let meme = this.state.currentMemes[0];
-       
-                }
-                </Swing>
-        </div> );
+	                		if(key == this.state.currentMemes.length - 1){
+	                			cardClass = "card mx-auto";
+	                		}
+
+	                		return (
+			                	<div key={key} className={ cardClass } id={key} ref={key} throwout={e => console.log('card throwout', e)}>
+								  <div className="card-body">
+								  	<div className="row mx-0">
+								  		<h5 className="my-auto">{element.title}</h5>	
+										<ActionBarComponent imageURL={element.imageUrl} />
+								  	</div>
+								  	<div className="card-img" style={{backgroundImage: `url(${element.imageUrl})`}}>
+								  		<img src={`${element.imageUrl}`}></img>
+								  	</div>
+								  	<div>From: {element.subreddit}</div>
+								  </div>
+								</div>  
+							)
+	                	})
+		        		//let meme = this.state.currentMemes[0];
+	       
+	                }
+	                </Swing>
+        		</div>
+
+        		<div className="col">
+            	</div>
+            </div>
+    	);
     }
 }
 
