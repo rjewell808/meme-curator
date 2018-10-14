@@ -51560,7 +51560,7 @@ function (_React$Component) {
       var key = -1;
       var key2 = -1;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row mx-0 mt-4"
+        className: "row mx-0 mt-4 px-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -51613,25 +51613,25 @@ function (_React$Component) {
       )), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col",
         id: "memestats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row mx-0"
       }, Object.keys(this.state.memeWeights).map(function (w_key) {
         key2++;
         var element = _this2.state.memeWeights[w_key];
         var width = _this2.state.memeWeights[w_key] / _this2.state.total * 100.0;
         console.log(width);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row mx-0"
+          className: "col-6"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row mb-0 mx-0"
+          className: "row mb-0 mx-0 stat-title"
         }, w_key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: key2,
           className: "row mb-2 stat-row mx-0",
           style: {
             width: "".concat(width, "%")
           }
-        }, element)));
-      })));
+        }, element));
+      }))));
     }
   }]);
 
