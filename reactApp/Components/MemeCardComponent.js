@@ -1,6 +1,7 @@
 import React from 'react';
 import Swing from 'react-swing';
 import axios from 'axios';
+import ActionBarComponent from './ActionBarComponent'
 
 class MemeCardComponent extends React.Component {
     
@@ -41,8 +42,6 @@ class MemeCardComponent extends React.Component {
     	})
     }
 
-
-
     render() {
 
     	const imgStyle = {
@@ -69,13 +68,14 @@ class MemeCardComponent extends React.Component {
                 		var cardClass = "d-none"
 
                 		if(key == this.state.currentMemes.length - 1){
-                			cardClass = "card mx-auto mt-4";
+                			cardClass = "card mx-auto";
                 		}
 
                 		return (
 		                	<div key={key} className={ cardClass } id={key} ref={key} throwout={e => console.log('card throwout', e)}>
 							  <div className="card-body">
 							  	<h5 className="card-title">{element.title}</h5>
+							  	<ActionBarComponent imageURL={element.imageUrl} />
 							  	<div className="card-img" style={{backgroundImage: `url(${element.imageUrl})`}}>
 							  		<img src={`${element.imageUrl}`}></img>
 							  	</div>
