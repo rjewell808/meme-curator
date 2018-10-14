@@ -8036,22 +8036,6 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -44951,6 +44935,20 @@ var withRouter = function withRouter(Component) {
 
 /***/ }),
 
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
 /*!************************************************************************!*\
   !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
@@ -44958,7 +44956,7 @@ var withRouter = function withRouter(Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
 
 /**
  * Expose `pathToRegexp`.
@@ -51508,8 +51506,18 @@ function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/updatememes', {
         memeWeights: this.state.memeWeights
       }).then(function (result) {
-        console.log(result);
-      }).catch(function (err) {
+        var newCurrentMemes = this.state.currentMemes;
+
+        for (var i = 0; i < data.data.result.length; i++) {
+          newCurrentMemes.push(data.data.result[i]);
+          newCurrentMemes.push(data.data.result[i]);
+        }
+
+        this.setState({
+          currentMemes: newCurrentMemes,
+          memeWeights: data.data.memeWeights
+        });
+      }.bind(this)).catch(function (err) {
         console.log(err);
       });
     }

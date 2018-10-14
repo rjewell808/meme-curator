@@ -45,8 +45,17 @@ class MemeCardComponent extends React.Component {
 			memeWeights: this.state.memeWeights
 		})
 		.then(function(result) {
-			console.log(result)
-		})
+			let newCurrentMemes = this.state.currentMemes
+			for (var i = 0; i < data.data.result.length; i++) {
+				newCurrentMemes.push(data.data.result[i])
+				newCurrentMemes.push(data.data.result[i])
+			}
+
+			this.setState({
+				currentMemes: newCurrentMemes,
+				memeWeights: data.data.memeWeights
+			})
+		}.bind(this))
 		.catch(function(err) {
 			console.log(err)
 		})
