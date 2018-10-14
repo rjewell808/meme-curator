@@ -10,7 +10,7 @@ class NavBarComponent extends React.Component {
         return (<div>
         	<ul className="nav px-2">
                 <li className="navbar-brand">
-                    <Link to="/">MemeMachine</Link>
+                    <a href="/">MemeMachine</a>
                 </li>
                 <li className="nav-item ml-auto">
                     <a className="nav-link"><Link to="/favorites">Favorites</Link></a>
