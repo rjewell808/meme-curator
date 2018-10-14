@@ -5,6 +5,7 @@ import MemeCardComponent from './MemeCardComponent'
 import FavoriteComponent from './FavoriteComponent'
 import ActionBarComponent from './ActionBarComponent'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import CustomFavoriteComponent from './CustomFavoriteComponent'
 
 class HomePageComponent extends React.Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class HomePageComponent extends React.Component {
                     <NavBarComponent />
                     <Route exact path="/" component={MemeCardComponent} />
                     <Route exact path="/favorites" component={FavoriteComponent} />
+                    <Route exact path="/customfavorite" component={CustomFavoriteComponent} />
                 </div>
             </Router>
         );

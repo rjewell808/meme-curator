@@ -31,14 +31,14 @@ router.post('/addFavorite', function(req, res) {
 });
 
 router.get('/getFavorites', function(req, res) {
-    Meme.find({}, function(err, res) {
+    Meme.find({}, function(err, result) {
         if (err) {
             res.status(500).json({
                 "message": "There was an error" + err
             });
         } else {
             res.json({
-                result: res
+                result: result
             });
         }
     });
