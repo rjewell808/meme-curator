@@ -15,7 +15,7 @@ class NavBarComponent extends React.Component {
                 <li className="nav-item ml-auto">
                     <a className="nav-link"><Link to="/favorites">Favorites</Link></a>
                 </li>
-                <li className="nav-item ml-auto">
+                <li className="nav-item">
                     <a className="nav-link"><Link to="/customfavorite">Add a custom favorite</Link></a>
                 </li>
         		<li className="nav-item">
