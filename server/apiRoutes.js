@@ -33,6 +33,8 @@ router.post('/addFavorite', function(req, res) {
 });
 
 router.get('/getFavorites', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     Meme.find({}, function(err, result) {
         if (err) {
             res.status(500).json({
