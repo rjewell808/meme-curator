@@ -85,10 +85,10 @@ function getAllMemes() {
         for (var i = 0; i < 25; i++) {
             let x = Math.floor(Math.random() * (sum + 1));
             let total = 0
-            for (var i = 0; i < subreddits.length; i++) {
-                let current = memeWeights[subreddits[i]];
+            for (var j = 0; j < subreddits.length; j++) {
+                let current = memeWeights[subreddits[j]];
                 if (x > total && x <= total + current) {
-                    allPromises.push(getMemeFromSubreddit(subreddits[i]), 2);
+                    allPromises.push(getMemeFromSubreddit(subreddits[j], 2));
                     break;
                 }
                 total += current;
@@ -112,6 +112,7 @@ function getMemeFromSubreddit(subreddit, num) {
         let memes = []
         request(`http://www.reddit.com/r/${subreddit}/.json`, function(error, response, body) {
             if (error) {
+                console.log(error)
                 reject(error);
             } else {
                 const children = JSON.parse(body).data.children;

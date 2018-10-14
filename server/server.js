@@ -24,7 +24,6 @@ mongoose.connection.on("connected", function() {
 
 mongoose.connect(MLAB_URI, { useNewUrlParser: true });
 
-
 // Start server
 app.listen(port, function() {
 	console.log("running on port", port);
