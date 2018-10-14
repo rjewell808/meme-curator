@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class ActionBarComponent extends React.Component {
+class FavoriteButtonComponent extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -28,4 +28,4 @@ class ActionBarComponent extends React.Component {
     }
 }
 
-export default ActionBarComponent;
+export default FavoriteButtonComponent;

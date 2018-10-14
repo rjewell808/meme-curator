@@ -98,6 +98,10 @@ body {
 	background-color: #00BFA5;
 	color: #E0F2F1;
 	border-radius: 5px;
-	padding-left: 5px;
+	padding-left: 2px;
 	font-weight: bold;
+}
+
+#controls button {
+	width: auto;
 }

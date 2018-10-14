@@ -3,7 +3,6 @@ import HelloWorldComponent from './HelloWorldComponent'
 import NavBarComponent from './NavBarComponent'
 import MemeCardComponent from './MemeCardComponent'
 import FavoriteComponent from './FavoriteComponent'
-import ActionBarComponent from './ActionBarComponent'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import CustomFavoriteComponent from './CustomFavoriteComponent'
 

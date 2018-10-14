@@ -8036,22 +8036,6 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -44951,6 +44935,20 @@ var withRouter = function withRouter(Component) {
 
 /***/ }),
 
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
 /*!************************************************************************!*\
   !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
@@ -44958,7 +44956,7 @@ var withRouter = function withRouter(Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
 
 /**
  * Expose `pathToRegexp`.
@@ -50986,10 +50984,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./reactApp/Components/ActionBarComponent.js":
-/*!***************************************************!*\
-  !*** ./reactApp/Components/ActionBarComponent.js ***!
-  \***************************************************/
+/***/ "./reactApp/Components/ControlBarComponent.js":
+/*!****************************************************!*\
+  !*** ./reactApp/Components/ControlBarComponent.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50997,8 +50995,6 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51019,54 +51015,51 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-var ActionBarComponent =
+var ControlBarComponent =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ActionBarComponent, _React$Component);
+  _inherits(ControlBarComponent, _React$Component);
 
-  function ActionBarComponent(props) {
-    _classCallCheck(this, ActionBarComponent);
+  function ControlBarComponent(props) {
+    _classCallCheck(this, ControlBarComponent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ActionBarComponent).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ControlBarComponent).call(this, props));
   }
 
-  _createClass(ActionBarComponent, [{
-    key: "addFavorite",
-    value: function addFavorite() {
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/addFavorite', {
-        image: this.props.imageURL
-      }).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-        console.log(error);
-      });
-      console.log(document.getElementById("fav-but").className);
-      document.getElementById("fav-but").setAttribute("class", "btn btn-success d-block my-2");
-      console.log(document.getElementById("fav-but").className);
-    }
+  _createClass(ControlBarComponent, [{
+    key: "swipeRight",
+    value: function swipeRight() {}
+  }, {
+    key: "swipeLeft",
+    value: function swipeLeft() {}
   }, {
     key: "render",
     value: function render() {
       var _this = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-inline ml-auto"
+        className: "row mx-0 p-2",
+        id: "controls"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
-        id: "fav-but",
-        className: "btn btn-outline-success d-block my-2",
+        className: "btn btn-outline-info d-block mr-0",
         onClick: function onClick() {
-          _this.addFavorite();
+          _this.swipeLeft();
         }
-      }, "\u2665"));
+      }, "No"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-outline-info d-block ml-auto",
+        onClick: function onClick() {
+          _this.swipeRight();
+        }
+      }, "Yes"));
     }
   }]);
 
-  return ActionBarComponent;
+  return ControlBarComponent;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ActionBarComponent);
+/* harmony default export */ __webpack_exports__["default"] = (ControlBarComponent);
 
 /***/ }),
 
@@ -51171,6 +51164,90 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (CustomFavoriteComponent);
+
+/***/ }),
+
+/***/ "./reactApp/Components/FavoriteButtonComponent.js":
+/*!********************************************************!*\
+  !*** ./reactApp/Components/FavoriteButtonComponent.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var FavoriteButtonComponent =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(FavoriteButtonComponent, _React$Component);
+
+  function FavoriteButtonComponent(props) {
+    _classCallCheck(this, FavoriteButtonComponent);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(FavoriteButtonComponent).call(this, props));
+  }
+
+  _createClass(FavoriteButtonComponent, [{
+    key: "addFavorite",
+    value: function addFavorite() {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/addFavorite', {
+        image: this.props.imageURL
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+      console.log(document.getElementById("fav-but").className);
+      document.getElementById("fav-but").setAttribute("class", "btn btn-success d-block my-2");
+      console.log(document.getElementById("fav-but").className);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-inline ml-auto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        id: "fav-but",
+        className: "btn btn-outline-success d-block my-2",
+        onClick: function onClick() {
+          _this.addFavorite();
+        }
+      }, "\u2665"));
+    }
+  }]);
+
+  return FavoriteButtonComponent;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (FavoriteButtonComponent);
 
 /***/ }),
 
@@ -51340,9 +51417,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NavBarComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NavBarComponent */ "./reactApp/Components/NavBarComponent.js");
 /* harmony import */ var _MemeCardComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MemeCardComponent */ "./reactApp/Components/MemeCardComponent.js");
 /* harmony import */ var _FavoriteComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FavoriteComponent */ "./reactApp/Components/FavoriteComponent.js");
-/* harmony import */ var _ActionBarComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ActionBarComponent */ "./reactApp/Components/ActionBarComponent.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var _CustomFavoriteComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CustomFavoriteComponent */ "./reactApp/Components/CustomFavoriteComponent.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _CustomFavoriteComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CustomFavoriteComponent */ "./reactApp/Components/CustomFavoriteComponent.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51360,7 +51436,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 
 
 
@@ -51393,20 +51468,20 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid px-0"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavBarComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavBarComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
         exact: true,
         path: "/",
         component: _MemeCardComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
         exact: true,
         path: "/favorites",
         component: _FavoriteComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
         exact: true,
         path: "/customfavorite",
-        component: _CustomFavoriteComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+        component: _CustomFavoriteComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
       })));
     }
   }]);
@@ -51433,7 +51508,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_swing__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_swing__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _ActionBarComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ActionBarComponent */ "./reactApp/Components/ActionBarComponent.js");
+/* harmony import */ var _FavoriteButtonComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavoriteButtonComponent */ "./reactApp/Components/FavoriteButtonComponent.js");
+/* harmony import */ var _ControlBarComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ControlBarComponent */ "./reactApp/Components/ControlBarComponent.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51457,6 +51533,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var MemeCardComponent =
 /*#__PURE__*/
 function (_React$Component) {
@@ -51470,7 +51547,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MemeCardComponent).call(this, props));
     _this.state = {
       currentMemes: [{
-        imageUrl: "./images/sample1.jpg",
+        imageUrl: "/images/sample1.jpg",
         title: "NA",
         subreddit: "Papa pls"
       }],
@@ -51560,14 +51637,15 @@ function (_React$Component) {
       var key = -1;
       var key2 = -1;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row mx-0 mt-4 px-2"
+        className: "row mx-0 px-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 col-lg-4"
+        className: "col-12 col-lg-4 mt-4"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 col-lg-4"
+        className: "col-12 col-lg-4 mt-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_swing__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "stack",
         tagName: "div",
+        id: "stack",
         setStack: function setStack(stack) {
           return _this2.setState({
             stack: stack
@@ -51599,7 +51677,7 @@ function (_React$Component) {
           className: "row mx-0"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
           className: "my-auto"
-        }, element.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ActionBarComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }, element.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButtonComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
           imageURL: element.imageUrl
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-img",
@@ -51611,7 +51689,7 @@ function (_React$Component) {
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit)));
       }) //let meme = this.state.currentMemes[0];
       )), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 col-lg-4",
+        className: "col-12 col-lg-4 mt-4",
         id: "memestats"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row mx-0"
@@ -51710,12 +51788,12 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/customfavorite"
       }, "Add Custom Favorite"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "nav-item"
+        className: "nav-item d-none"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",
         href: "#"
       }, "Sign In")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "nav-item"
+        className: "nav-item d-none"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",
         href: "#"

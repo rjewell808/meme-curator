@@ -1,7 +1,8 @@
 import React from 'react';
 import Swing from 'react-swing';
 import axios from 'axios';
-import ActionBarComponent from './ActionBarComponent'
+import FavoriteButtonComponent from './FavoriteButtonComponent'
+import ControlBarComponent from './ControlBarComponent'
 
 class MemeCardComponent extends React.Component {
     
@@ -9,7 +10,7 @@ class MemeCardComponent extends React.Component {
         super(props);
         this.state = {
         	currentMemes: [{
-        		imageUrl: "./images/sample1.jpg",
+        		imageUrl: "/images/sample1.jpg",
         		title: "NA",
         		subreddit: "Papa pls"
 			}],
@@ -95,14 +96,15 @@ class MemeCardComponent extends React.Component {
 
         return ( 
 
-        	<div className="row mx-0 mt-4 px-2">
-                <div className="col-12 col-lg-4">
+        	<div className="row mx-0 px-2">
+                <div className="col-12 col-lg-4 mt-4">
                 </div>
                     
-                <div className="col-12 col-lg-4">
+                <div className="col-12 col-lg-4 mt-4">
                     <Swing
 	                className="stack"
 	                tagName="div"
+	                id="stack"
 	                setStack={stack => this.setState({ stack: stack })}
 	                ref="stack"
 	                throwout={e => this.swiped(e)}
@@ -121,14 +123,14 @@ class MemeCardComponent extends React.Component {
 								  <div className="card-body">
 								  	<div className="row mx-0">
 								  		<h5 className="my-auto">{element.title}</h5>	
-										<ActionBarComponent imageURL={element.imageUrl} />
+										<FavoriteButtonComponent imageURL={element.imageUrl} />
 								  	</div>
 								  	<div className="card-img" style={{backgroundImage: `url(${element.imageUrl})`}}>
 								  		<img src={`${element.imageUrl}`}></img>
 								  	</div>
 								  	<div>From: {element.subreddit}</div>
 								  </div>
-								</div>  
+								</div> 
 							)
 	                	})
 		        		//let meme = this.state.currentMemes[0];
@@ -137,7 +139,7 @@ class MemeCardComponent extends React.Component {
 	                </Swing>
         		</div>
 
-        		<div className="col-12 col-lg-4" id="memestats">
+        		<div className="col-12 col-lg-4 mt-4" id="memestats">
         			<div className="row mx-0">
         				<div className="col-12">
         					<h1>Subreddit Rankings</h1>
