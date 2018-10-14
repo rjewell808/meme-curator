@@ -12,29 +12,57 @@ class MemeCardComponent extends React.Component {
         		imageUrl: "./images/sample1.jpg",
         		title: "NA",
         		subreddit: "Papa pls"
-        	}]
-        }
+			}],
+			memeWeights: {}
+		}
+		
+		this.getNewMemes = this.getNewMemes.bind(this)
     }
 
     swiped(e) {
     	let newCurrentMemes = this.state.currentMemes
-    	newCurrentMemes.pop()
-    	console.log(this.state.currentMemes.length)
-    	this.setState({
-    		currentMemes: newCurrentMemes
-    	})
-    }
+    	let currObj = newCurrentMemes.pop()
+		
+		let newMemeWeights = this.state.memeWeights;
+		if (e.throwDirection.toString() === "Symbol(Right)") {
+			newMemeWeights[currObj.subreddit]++;
+		} else {
+			newMemeWeights[currObj.subreddit]--;
+		}
+
+		this.setState({
+			currentMemes: newCurrentMemes,
+			memeWeights: newMemeWeights
+		});
+
+		if (this.state.currentMemes < 10) {
+			this.getNewMemes();
+		}
+	}
+	
+	getNewMemes() {
+		axios.post('/api/updatememes', {
+			memeWeights: this.state.memeWeights
+		})
+		.then(function(result) {
+			console.log(result)
+		})
+		.catch(function(err) {
+			console.log(err)
+		})
+	}
 
     componentDidMount() {
     	axios.get('/api/getAllMemes')
     	.then(function(data) {
-    		let newCurrentMemes = [];
+    		let newCurrentMemes = this.state.currentMemes;
     		for (var i = 0; i < data.data.result.length; i++) {
     			newCurrentMemes.push(data.data.result[i]);
     			newCurrentMemes.push(data.data.result[i]);
     		}
     		this.setState({
-    			currentMemes: newCurrentMemes
+				currentMemes: newCurrentMemes,
+				memeWeights: data.data.memeWeights
     		})
     	}.bind(this))
     	.catch(function(error) {
@@ -48,12 +76,8 @@ class MemeCardComponent extends React.Component {
 	    	backgroundImage: `url(/meme-images/sample2.jpg)`,
 	    	backgroundSize: "cover"
 	    };
-	    let key = -1;
-
-	    // let imageToRender = this.state.currentMemes.length > 0 ? [this.state.currentMemes[0].imageUrl] : './sample1.jpg';
-	    // let textToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].title : 'NA';
-	    // let subToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].subreddit: 'David Barrington is Amazing';
-
+		let key = -1;
+		
         return ( 
 
         	<div className="row mx-0 mt-4">
@@ -88,6 +112,7 @@ class MemeCardComponent extends React.Component {
 								  		<img src={`${element.imageUrl}`}></img>
 								  	</div>
 								  	<div>From: {element.subreddit}</div>
+									<button onClick={() => {this.getNewMemes()}}>updatememes</button>
 								  </div>
 								</div>  
 							)

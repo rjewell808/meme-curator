@@ -25,7 +25,7 @@ class CustomFavoriteComponent extends React.Component {
             })
             .catch(function (error) {
                 console.log(error);
-            });
+            })
         }
     }
 
@@ -46,3 +46,5 @@ class CustomFavoriteComponent extends React.Component {
         );
     }
 }
+
+export default CustomFavoriteComponent;
