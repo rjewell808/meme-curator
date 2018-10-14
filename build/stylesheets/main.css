@@ -90,7 +90,7 @@ body {
 	padding: 5px;
 }
 
-#memestats .stat-title {
+#memestats .stat-title, #memestats h1 {
 	color: white;
 }
 

@@ -51562,9 +51562,9 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row mx-0 mt-4 px-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col"
+        className: "col-12 col-lg-4"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col"
+        className: "col-12 col-lg-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_swing__WEBPACK_IMPORTED_MODULE_1___default.a, {
         className: "stack",
         tagName: "div",
@@ -51611,11 +51611,13 @@ function (_React$Component) {
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit)));
       }) //let meme = this.state.currentMemes[0];
       )), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col",
+        className: "col-12 col-lg-4",
         id: "memestats"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row mx-0"
-      }, Object.keys(this.state.memeWeights).map(function (w_key) {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Subreddit Rankings")), Object.keys(this.state.memeWeights).map(function (w_key) {
         key2++;
         var element = _this2.state.memeWeights[w_key];
         var width = _this2.state.memeWeights[w_key] / _this2.state.total * 100.0;
@@ -51707,7 +51709,7 @@ function (_React$Component) {
         className: "nav-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/customfavorite"
-      }, "Add a custom favorite"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, "Add Custom Favorite"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",

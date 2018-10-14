@@ -16,7 +16,7 @@ class NavBarComponent extends React.Component {
                     <a className="nav-link"><Link to="/favorites">Favorites</Link></a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link"><Link to="/customfavorite">Add a custom favorite</Link></a>
+                    <a className="nav-link"><Link to="/customfavorite">Add Custom Favorite</Link></a>
                 </li>
         		<li className="nav-item">
         			<a className="nav-link" href="#">Sign In</a>
