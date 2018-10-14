@@ -47280,6 +47280,86 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./reactApp/Components/ActionBarComponent.js":
+/*!***************************************************!*\
+  !*** ./reactApp/Components/ActionBarComponent.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/react.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ActionBarComponent =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ActionBarComponent, _React$Component);
+
+  function ActionBarComponent(props) {
+    _classCallCheck(this, ActionBarComponent);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ActionBarComponent).call(this, props));
+  }
+
+  _createClass(ActionBarComponent, [{
+    key: "addFavorite",
+    value: function addFavorite() {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/addFavorite', {
+        image: this.props.imageURL
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-inline"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-outline-success mx-auto d-block mb-2",
+        onClick: function onClick() {
+          _this.addFavorite();
+        }
+      }, "\u2665"));
+    }
+  }]);
+
+  return ActionBarComponent;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ActionBarComponent);
+
+/***/ }),
+
 /***/ "./reactApp/Components/HelloWorldComponent.js":
 /*!****************************************************!*\
   !*** ./reactApp/Components/HelloWorldComponent.js ***!
@@ -47350,6 +47430,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HelloWorldComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HelloWorldComponent */ "./reactApp/Components/HelloWorldComponent.js");
 /* harmony import */ var _NavBarComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NavBarComponent */ "./reactApp/Components/NavBarComponent.js");
 /* harmony import */ var _MemeCardComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MemeCardComponent */ "./reactApp/Components/MemeCardComponent.js");
+/* harmony import */ var _ActionBarComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ActionBarComponent */ "./reactApp/Components/ActionBarComponent.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47367,6 +47448,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -47396,7 +47478,17 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavBarComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MemeCardComponent__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container-fluid px-0"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NavBarComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row mx-0 mt-4"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MemeCardComponent__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col"
+      })));
     }
   }]);
 
@@ -47422,6 +47514,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_swing__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_swing__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ActionBarComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ActionBarComponent */ "./reactApp/Components/ActionBarComponent.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47439,6 +47532,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -47523,7 +47617,7 @@ function (_React$Component) {
         var cardClass = "d-none";
 
         if (key == _this2.state.currentMemes.length - 1) {
-          cardClass = "card mx-auto mt-4";
+          cardClass = "card mx-auto";
         }
 
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -47538,7 +47632,9 @@ function (_React$Component) {
           className: "card-body"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
           className: "card-title"
-        }, element.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, element.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ActionBarComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          imageURL: element.imageUrl
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-img",
           style: {
             backgroundImage: "url(".concat(element.imageUrl, ")")

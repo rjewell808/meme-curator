@@ -2,6 +2,7 @@ import React from 'react';
 import HelloWorldComponent from './HelloWorldComponent'
 import NavBarComponent from './NavBarComponent'
 import MemeCardComponent from './MemeCardComponent'
+import ActionBarComponent from './ActionBarComponent'
 
 class HomePageComponent extends React.Component {
     constructor(props) {
@@ -14,9 +15,17 @@ class HomePageComponent extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className="container-fluid px-0">
             <NavBarComponent />
-            <MemeCardComponent />
+            <div className="row mx-0 mt-4">
+                <div className="col">
+                </div>
+                <div className="col">
+                    <MemeCardComponent />
+                </div>
+                <div className="col">
+                </div>
+            </div>
         </div>
     }
 }

@@ -20,12 +20,9 @@ body {
 	color: #B0BEC5;
 	max-width: 480px;
 	height: auto;
-	right: -50%;
-	left: -50%;
 	background-color: #37474F;
 	box-shadow: 0px 0.3rem 0.5rem 0px rgba(27,29,41,0.52);
 	border-radius: 5px;
-	position: absolute;
 }
 
 .card-body {
@@ -43,7 +40,12 @@ body {
 }
 
 .card-img img {
-	width: 100%;
-	height: auto;
+	width: auto;
+	height: 100%;
 	visibility: hidden;
+}
+
+.btn {
+	width: 40px;
+	height: 40px;
 }
