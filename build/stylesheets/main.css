@@ -11,7 +11,7 @@ body {
 	background-color: #546E7A;
 }
 
-.nav .nav-item a, .navbar-brand {
+.nav .nav-item a, .navbar-brand a {
 	color: white;
 	height: 100%;
 }
@@ -35,16 +35,32 @@ body {
 
 .card-img {
 	background-position: center;
-	background-size: auto;
+	background-size: contain;
 }
 
 .card-img img {
-	width: auto;
-	height: 100%;
+	width: 100%;
+	height: auto;
 	visibility: hidden;
 }
 
 .btn {
 	width: 40px;
 	height: 40px;
+}
+
+.favorites h1 {
+	color: white;
+}
+
+.favorites img{
+	width: 100%;
+	height: auto;
+}
+
+.favorites .fav-img {
+	padding: 10px;
+	margin: 10px;
+	height: 100%;
+	background-color: #37474F;
 }
