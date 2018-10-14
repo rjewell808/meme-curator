@@ -13,9 +13,9 @@ class MemeCardComponent extends React.Component {
         		title: "NA",
         		subreddit: "Papa pls"
 			}],
-			memeWeights: {}
+			memeWeights: {},
+			total: 0
 		}
-		
 		this.getNewMemes = this.getNewMemes.bind(this)
     }
 
@@ -24,7 +24,7 @@ class MemeCardComponent extends React.Component {
     	let currObj = newCurrentMemes.pop()
 		
 		let newMemeWeights = this.state.memeWeights;
-		if (e.throwDirection.toString() === "Symbol(Right)") {
+		if (e.throwDirection.toString() === "Symbol(RIGHT)") {
 			newMemeWeights[currObj.subreddit]++;
 		} else {
 			newMemeWeights[currObj.subreddit]--;
@@ -56,13 +56,18 @@ class MemeCardComponent extends React.Component {
     	axios.get('/api/getAllMemes')
     	.then(function(data) {
     		let newCurrentMemes = this.state.currentMemes;
+    		let newTotal = 0;
+    		Object.keys(data.data.memeWeights).map((key) => {
+				newTotal += data.data.memeWeights[key]
+			})
     		for (var i = 0; i < data.data.result.length; i++) {
     			newCurrentMemes.push(data.data.result[i]);
     			newCurrentMemes.push(data.data.result[i]);
     		}
     		this.setState({
 				currentMemes: newCurrentMemes,
-				memeWeights: data.data.memeWeights
+				memeWeights: data.data.memeWeights,
+				total: newTotal
     		})
     	}.bind(this))
     	.catch(function(error) {
@@ -77,7 +82,8 @@ class MemeCardComponent extends React.Component {
 	    	backgroundSize: "cover"
 	    };
 		let key = -1;
-		
+		let key2 = -1;
+
         return ( 
 
         	<div className="row mx-0 mt-4">
@@ -112,7 +118,6 @@ class MemeCardComponent extends React.Component {
 								  		<img src={`${element.imageUrl}`}></img>
 								  	</div>
 								  	<div>From: {element.subreddit}</div>
-									<button onClick={() => {this.getNewMemes()}}>updatememes</button>
 								  </div>
 								</div>  
 							)
@@ -123,7 +128,28 @@ class MemeCardComponent extends React.Component {
 	                </Swing>
         		</div>
 
-        		<div className="col">
+        		<div className="col" id="memestats">
+        			{
+        				Object.keys(this.state.memeWeights).map((w_key) => {
+        					key2++;
+        					let element = this.state.memeWeights[w_key]
+        					let width = (this.state.memeWeights[w_key] / this.state.total) * 100.0;
+
+        					console.log(width)		
+        					return (
+        						<div className="row mx-0">
+	        						<div className="col">
+		        						<div className="row mb-0 mx-0">
+		        							{w_key}
+		        						</div>
+		        						<div key={key2} className="row mb-2 stat-row mx-0" style={{width: `${width}%`}}>
+		        							{element}
+		        						</div>
+	        						</div>
+        						</div>
+        					)
+        				})
+        			}
             	</div>
             </div>
     	);

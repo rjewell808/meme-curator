@@ -51474,7 +51474,8 @@ function (_React$Component) {
         title: "NA",
         subreddit: "Papa pls"
       }],
-      memeWeights: {}
+      memeWeights: {},
+      total: 0
     };
     _this.getNewMemes = _this.getNewMemes.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
@@ -51487,7 +51488,7 @@ function (_React$Component) {
       var currObj = newCurrentMemes.pop();
       var newMemeWeights = this.state.memeWeights;
 
-      if (e.throwDirection.toString() === "Symbol(Right)") {
+      if (e.throwDirection.toString() === "Symbol(RIGHT)") {
         newMemeWeights[currObj.subreddit]++;
       } else {
         newMemeWeights[currObj.subreddit]--;
@@ -51518,6 +51519,10 @@ function (_React$Component) {
     value: function componentDidMount() {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/getAllMemes').then(function (data) {
         var newCurrentMemes = this.state.currentMemes;
+        var newTotal = 0;
+        Object.keys(data.data.memeWeights).map(function (key) {
+          newTotal += data.data.memeWeights[key];
+        });
 
         for (var i = 0; i < data.data.result.length; i++) {
           newCurrentMemes.push(data.data.result[i]);
@@ -51526,7 +51531,8 @@ function (_React$Component) {
 
         this.setState({
           currentMemes: newCurrentMemes,
-          memeWeights: data.data.memeWeights
+          memeWeights: data.data.memeWeights,
+          total: newTotal
         });
       }.bind(this)).catch(function (error) {
         console.log(error);
@@ -51542,6 +51548,7 @@ function (_React$Component) {
         backgroundSize: "cover"
       };
       var key = -1;
+      var key2 = -1;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row mx-0 mt-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -51591,15 +51598,30 @@ function (_React$Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "".concat(element.imageUrl)
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: function onClick() {
-            _this2.getNewMemes();
-          }
-        }, "updatememes")));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit)));
       }) //let meme = this.state.currentMemes[0];
       )), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col"
-      }));
+        className: "col",
+        id: "memestats"
+      }, Object.keys(this.state.memeWeights).map(function (w_key) {
+        key2++;
+        var element = _this2.state.memeWeights[w_key];
+        var width = _this2.state.memeWeights[w_key] / _this2.state.total * 100.0;
+        console.log(width);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row mx-0"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row mb-0 mx-0"
+        }, w_key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: key2,
+          className: "row mb-2 stat-row mx-0",
+          style: {
+            width: "".concat(width, "%")
+          }
+        }, element)));
+      })));
     }
   }]);
 
