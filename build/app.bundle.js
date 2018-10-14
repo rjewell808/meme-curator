@@ -51509,8 +51509,18 @@ function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/updatememes', {
         memeWeights: this.state.memeWeights
       }).then(function (result) {
-        console.log(result);
-      }).catch(function (err) {
+        var newCurrentMemes = this.state.currentMemes;
+
+        for (var i = 0; i < data.data.result.length; i++) {
+          newCurrentMemes.push(data.data.result[i]);
+          newCurrentMemes.push(data.data.result[i]);
+        }
+
+        this.setState({
+          currentMemes: newCurrentMemes,
+          memeWeights: data.data.memeWeights
+        });
+      }.bind(this)).catch(function (err) {
         console.log(err);
       });
     }
