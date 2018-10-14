@@ -51599,11 +51599,7 @@ function (_React$Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "".concat(element.imageUrl)
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: function onClick() {
-            _this2.getNewMemes();
-          }
-        }, "updatememes")));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit)));
       }) //let meme = this.state.currentMemes[0];
       )), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"

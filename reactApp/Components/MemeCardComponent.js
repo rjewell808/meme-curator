@@ -121,7 +121,6 @@ class MemeCardComponent extends React.Component {
 								  		<img src={`${element.imageUrl}`}></img>
 								  	</div>
 								  	<div>From: {element.subreddit}</div>
-									<button onClick={() => {this.getNewMemes()}}>updatememes</button>
 								  </div>
 								</div>  
 							)
