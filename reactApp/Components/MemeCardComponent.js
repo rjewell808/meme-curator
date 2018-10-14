@@ -102,11 +102,11 @@ class MemeCardComponent extends React.Component {
 
         return ( 
 
-        	<div className="row mx-0 mt-4">
-                <div className="col">
+        	<div className="row mx-0 mt-4 px-2">
+                <div className="col-12 col-lg-4">
                 </div>
                     
-                <div className="col">
+                <div className="col-12 col-lg-4">
                     <Swing
 	                className="stack"
 	                tagName="div"
@@ -144,28 +144,31 @@ class MemeCardComponent extends React.Component {
 	                </Swing>
         		</div>
 
-        		<div className="col" id="memestats">
-        			{
-        				Object.keys(this.state.memeWeights).map((w_key) => {
-        					key2++;
-        					let element = this.state.memeWeights[w_key]
-        					let width = (this.state.memeWeights[w_key] / this.state.total) * 100.0;
+        		<div className="col-12 col-lg-4" id="memestats">
+        			<div className="row mx-0">
+        				<div className="col-12">
+        					<h1>Subreddit Rankings</h1>
+        				</div>
+	        			{
+	        				Object.keys(this.state.memeWeights).map((w_key) => {
+	        					key2++;
+	        					let element = this.state.memeWeights[w_key]
+	        					let width = (this.state.memeWeights[w_key] / this.state.total) * 100.0;
 
-        					console.log(width)		
-        					return (
-        						<div className="row mx-0">
-	        						<div className="col">
-		        						<div className="row mb-0 mx-0">
+	        					console.log(width)		
+	        					return (
+	        						<div className="col-6">
+		        						<div className="row mb-0 mx-0 stat-title">
 		        							{w_key}
 		        						</div>
 		        						<div key={key2} className="row mb-2 stat-row mx-0" style={{width: `${width}%`}}>
 		        							{element}
 		        						</div>
 	        						</div>
-        						</div>
-        					)
-        				})
-        			}
+	        					)
+	        				})
+	        			}
+        			</div>
             	</div>
             </div>
     	);
