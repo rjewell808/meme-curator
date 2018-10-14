@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Meme = require('./favoritememe');
 const request = require('request');
 
-const memeWeights = {
+let memeWeights = {
     "memes":                50,
     "dankmemes":            50,
     "greentext":            50,
@@ -88,7 +88,7 @@ function getAllMemes() {
             for (var j = 0; j < subreddits.length; j++) {
                 let current = memeWeights[subreddits[j]];
                 if (x > total && x <= total + current) {
-                    allPromises.push(getMemeFromSubreddit(subreddits[j], 2));
+                    allPromises.push(getMemeFromSubreddit(subreddits[j], 1));
                     break;
                 }
                 total += current;
