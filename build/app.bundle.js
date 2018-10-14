@@ -51039,6 +51039,9 @@ function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
+      console.log(document.getElementById("fav-but").className);
+      document.getElementById("fav-but").setAttribute("class", "btn btn-success d-block my-2");
+      console.log(document.getElementById("fav-but").className);
     }
   }, {
     key: "render",
@@ -51049,6 +51052,7 @@ function (_React$Component) {
         className: "d-inline ml-auto"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
+        id: "fav-but",
         className: "btn btn-outline-success d-block my-2",
         onClick: function onClick() {
           _this.addFavorite();
@@ -51068,7 +51072,7 @@ function (_React$Component) {
 /*!********************************************************!*\
   !*** ./reactApp/Components/CustomFavoriteComponent.js ***!
   \********************************************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51141,16 +51145,17 @@ function (_React$Component) {
       var _this2 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row mx-0 mt-4"
+        className: "row mx-0 mt-4 custom-favorite"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Add a Custom Favorite"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Paste any image url to add to your favorites!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "mr-2",
         type: "url",
         value: this.state.imageUrl
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary",
+        className: "btn btn-primary mr-auto",
         onClick: function onClick() {
           return _this2.submitFavorite();
         }
@@ -51162,6 +51167,8 @@ function (_React$Component) {
 
   return CustomFavoriteComponent;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (CustomFavoriteComponent);
 
 /***/ }),
 
@@ -51625,8 +51632,8 @@ function (_React$Component) {
         className: "nav px-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "navbar-brand"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "/"
       }, "MemeMachine")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item ml-auto"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
