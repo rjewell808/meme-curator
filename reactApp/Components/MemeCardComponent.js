@@ -11,7 +11,7 @@ class MemeCardComponent extends React.Component {
         	currentMemes: [{
         		imageUrl: "./images/sample1.jpg",
         		title: "NA",
-        		subreddit: "Papa pls"
+        		subreddit: "Loading"
 			}],
 			memeWeights: {},
 			total: 0
@@ -25,9 +25,14 @@ class MemeCardComponent extends React.Component {
 		
 		let newMemeWeights = this.state.memeWeights;
 		if (e.throwDirection.toString() === "Symbol(RIGHT)") {
-			newMemeWeights[currObj.subreddit]++;
+			newMemeWeights[currObj.subreddit] += 4;
 		} else {
-			newMemeWeights[currObj.subreddit]--;
+			newMemeWeights[currObj.subreddit] -= 4;
+		}
+
+		// Prevent from going below 0
+		if (newMemeWeights[currObj.subreddit] < 0) {
+			newMemeWeights[currObj.subreddit] = 0
 		}
 
 		this.setState({
@@ -35,7 +40,8 @@ class MemeCardComponent extends React.Component {
 			memeWeights: newMemeWeights
 		});
 
-		if (this.state.currentMemes < 10) {
+		if (this.state.currentMemes.length < 10) {
+			console.log("Current memes less than 10")
 			this.getNewMemes();
 		}
 	}
@@ -44,11 +50,12 @@ class MemeCardComponent extends React.Component {
 		axios.post('/api/updatememes', {
 			memeWeights: this.state.memeWeights
 		})
-		.then(function(result) {
+		.then(function(data) {
+			console.log("Received new memes")
 			let newCurrentMemes = this.state.currentMemes
 			for (var i = 0; i < data.data.result.length; i++) {
-				newCurrentMemes.push(data.data.result[i])
-				newCurrentMemes.push(data.data.result[i])
+				newCurrentMemes.unshift(data.data.result[i])
+				newCurrentMemes.unshift(data.data.result[i])
 			}
 
 			this.setState({

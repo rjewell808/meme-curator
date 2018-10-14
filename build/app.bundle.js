@@ -8036,22 +8036,6 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/isarray/index.js":
-/*!***************************************!*\
-  !*** ./node_modules/isarray/index.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -44951,6 +44935,20 @@ var withRouter = function withRouter(Component) {
 
 /***/ }),
 
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
 /*!************************************************************************!*\
   !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
@@ -44958,7 +44956,7 @@ var withRouter = function withRouter(Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
 
 /**
  * Expose `pathToRegexp`.
@@ -51472,7 +51470,7 @@ function (_React$Component) {
       currentMemes: [{
         imageUrl: "./images/sample1.jpg",
         title: "NA",
-        subreddit: "Papa pls"
+        subreddit: "Loading"
       }],
       memeWeights: {},
       total: 0
@@ -51489,9 +51487,14 @@ function (_React$Component) {
       var newMemeWeights = this.state.memeWeights;
 
       if (e.throwDirection.toString() === "Symbol(RIGHT)") {
-        newMemeWeights[currObj.subreddit]++;
+        newMemeWeights[currObj.subreddit] += 4;
       } else {
-        newMemeWeights[currObj.subreddit]--;
+        newMemeWeights[currObj.subreddit] -= 4;
+      } // Prevent from going below 0
+
+
+      if (newMemeWeights[currObj.subreddit] < 0) {
+        newMemeWeights[currObj.subreddit] = 0;
       }
 
       this.setState({
@@ -51499,7 +51502,8 @@ function (_React$Component) {
         memeWeights: newMemeWeights
       });
 
-      if (this.state.currentMemes < 10) {
+      if (this.state.currentMemes.length < 10) {
+        console.log("Current memes less than 10");
         this.getNewMemes();
       }
     }
@@ -51508,12 +51512,13 @@ function (_React$Component) {
     value: function getNewMemes() {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/updatememes', {
         memeWeights: this.state.memeWeights
-      }).then(function (result) {
+      }).then(function (data) {
+        console.log("Received new memes");
         var newCurrentMemes = this.state.currentMemes;
 
         for (var i = 0; i < data.data.result.length; i++) {
-          newCurrentMemes.push(data.data.result[i]);
-          newCurrentMemes.push(data.data.result[i]);
+          newCurrentMemes.unshift(data.data.result[i]);
+          newCurrentMemes.unshift(data.data.result[i]);
         }
 
         this.setState({
