@@ -51442,13 +51442,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -51471,8 +51471,10 @@ function (_React$Component) {
         imageUrl: "./images/sample1.jpg",
         title: "NA",
         subreddit: "Papa pls"
-      }]
+      }],
+      memeWeights: {}
     };
+    _this.getNewMemes = _this.getNewMemes.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -51480,17 +51482,40 @@ function (_React$Component) {
     key: "swiped",
     value: function swiped(e) {
       var newCurrentMemes = this.state.currentMemes;
-      newCurrentMemes.pop();
-      console.log(this.state.currentMemes.length);
+      var currObj = newCurrentMemes.pop();
+      var newMemeWeights = this.state.memeWeights;
+
+      if (e.throwDirection.toString() === "Symbol(Right)") {
+        newMemeWeights[currObj.subreddit]++;
+      } else {
+        newMemeWeights[currObj.subreddit]--;
+      }
+
       this.setState({
-        currentMemes: newCurrentMemes
+        currentMemes: newCurrentMemes,
+        memeWeights: newMemeWeights
+      });
+
+      if (this.state.currentMemes < 10) {
+        this.getNewMemes();
+      }
+    }
+  }, {
+    key: "getNewMemes",
+    value: function getNewMemes() {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/updatememes', {
+        memeWeights: this.state.memeWeights
+      }).then(function (result) {
+        console.log(result);
+      }).catch(function (err) {
+        console.log(err);
       });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/getAllMemes').then(function (data) {
-        var newCurrentMemes = [];
+        var newCurrentMemes = this.state.currentMemes;
 
         for (var i = 0; i < data.data.result.length; i++) {
           newCurrentMemes.push(data.data.result[i]);
@@ -51498,7 +51523,8 @@ function (_React$Component) {
         }
 
         this.setState({
-          currentMemes: newCurrentMemes
+          currentMemes: newCurrentMemes,
+          memeWeights: data.data.memeWeights
         });
       }.bind(this)).catch(function (error) {
         console.log(error);
@@ -51513,10 +51539,7 @@ function (_React$Component) {
         backgroundImage: "url(/meme-images/sample2.jpg)",
         backgroundSize: "cover"
       };
-      var key = -1; // let imageToRender = this.state.currentMemes.length > 0 ? [this.state.currentMemes[0].imageUrl] : './sample1.jpg';
-      // let textToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].title : 'NA';
-      // let subToRender = this.state.currentMemes.length > 0 ? this.state.currentMemes[0].subreddit: 'David Barrington is Amazing';
-
+      var key = -1;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row mx-0 mt-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -51566,7 +51589,11 @@ function (_React$Component) {
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "".concat(element.imageUrl)
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit)));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "From: ", element.subreddit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            _this2.getNewMemes();
+          }
+        }, "updatememes")));
       }) //let meme = this.state.currentMemes[0];
       )), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"
