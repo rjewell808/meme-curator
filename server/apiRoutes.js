@@ -23,6 +23,11 @@ const memeWeights = {
 
 router.post('/addFavorite', function(req, res) {
     console.log(req.body);
+    let newFav = new Meme();
+    newFav.image_url = req.body.image;
+    newFav.save(function(err) {
+        if (err) console.log(err);
+    });
 });
 
 router.get('/getFavorites', function(req, res) {

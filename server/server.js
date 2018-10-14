@@ -22,7 +22,7 @@ mongoose.connection.on("connected", function() {
     console.log("Connected to mlab");
 });
 
-mongoose.connect(MLAB_URI);
+mongoose.connect(MLAB_URI, { useNewUrlParser: true });
 
 
 // Start server
