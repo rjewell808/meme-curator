@@ -21,6 +21,8 @@ const memeWeights = {
     "boottoobig":           50
 }
 
+const seen = {}
+
 router.post('/addFavorite', function(req, res) {
     console.log(req.body);
     let newFav = new Meme();
@@ -45,7 +47,19 @@ router.get('/getFavorites', function(req, res) {
 });
 
 router.post('/updateMemes', function(req, res) {
-    console.log(req.body);
+    memeWeights = req.body.memeWeights;
+    getAllMemes().then(function(data) {
+        let result = [];
+        data.forEach(function(element) {
+            element.forEach(function(inner) {
+                result.push(inner);
+            })
+        })
+        res.json({
+            result: shuffle(result),
+            memeWeights: memeWeights
+        });
+    });
 })
 
 router.get('/getAllMemes', function(req, res) {
@@ -65,12 +79,20 @@ router.get('/getAllMemes', function(req, res) {
 
 function getAllMemes() {
     return new Promise(function(resolve, reject) {
-        console.log("Getting all memes")
         let allPromises = [];
         const subreddits = Object.keys(memeWeights);
-        for (var i = 0; i < subreddits.length; i++) {
-            const currentsubreddit = subreddits[i];
-            allPromises.push(getMemeFromSubreddit(currentsubreddit));
+        let sum = getSum()
+        for (var i = 0; i < 25; i++) {
+            let x = Math.floor(Math.random() * (sum + 1));
+            let total = 0
+            for (var i = 0; i < subreddits.length; i++) {
+                let current = memeWeights[subreddits[i]];
+                if (x > total && x <= total + current) {
+                    allPromises.push(getMemeFromSubreddit(subreddits[i]), 2);
+                    break;
+                }
+                total += current;
+            }
         }
     
         Promise.all(allPromises)
@@ -84,7 +106,7 @@ function getAllMemes() {
     });
 }
 
-function getMemeFromSubreddit(subreddit) {
+function getMemeFromSubreddit(subreddit, num) {
     console.log("About to make request for", subreddit);
     return new Promise(function(resolve, reject) {
         let memes = []
@@ -94,13 +116,13 @@ function getMemeFromSubreddit(subreddit) {
             } else {
                 const children = JSON.parse(body).data.children;
                 let j = 0;
-                while (j < children.length && memes.length < 5) {
-                    if (children[j].data.post_hint === "image") {
+                while (j < children.length && memes.length < num) {
+                    if (children[j].data.post_hint === "image" && !seen[children[j].data.url]) {
                         memes.push({imageUrl: children[j].data.url, subreddit: subreddit, title: children[j].data.title});
+                        seen[children[j].data.url] = true;
                     }
                     j++;
                 }
-                console.log("Got memes for", subreddit);
                 resolve(memes);
             }
         });
